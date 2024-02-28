@@ -1,9 +1,8 @@
-# ---- Build Phase ----
 FROM golang:1.17-alpine AS build
 
 WORKDIR /app
 
-COPY go.mod ./
+COPY go.mod go.sum ./
 
 RUN go mod download
 
@@ -17,6 +16,6 @@ WORKDIR /app
 
 COPY --from=build /app/app .
 
-EXPOSE 8000
+EXPOSE 4000 4001
 
 CMD ["./app"]

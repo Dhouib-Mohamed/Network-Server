@@ -1,9 +1,11 @@
 package main
 
 import (
+	"network-challenges/PrimeTime"
 	"network-challenges/SmokeTest"
 )
 
 func main() {
-	SmokeTest.Server()
+	go SmokeTest.Index()
+	PrimeTime.Index()
 }

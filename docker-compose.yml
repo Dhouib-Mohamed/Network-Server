@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  network:
+    build: .
+    ports:
+      - "4000:4000"
+      - "4001:4001"
+    env_file:
+      - .prod.env
