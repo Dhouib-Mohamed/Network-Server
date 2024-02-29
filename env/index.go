@@ -1,17 +1,16 @@
-package Env
+package env
 
 import (
 	"fmt"
 	"github.com/joho/godotenv"
-	"log"
-	"network-challenges/Log"
+	"network-challenges/log"
 	"os"
 	"strconv"
 )
 
 func init() {
 	if err := godotenv.Load(); err != nil {
-		log.Print("No .env file found")
+		log.Fatal(fmt.Errorf("no .env file found"))
 	}
 }
 
@@ -28,12 +27,12 @@ func get(key string) (string, error) {
 func GetSmokeTestPort() int {
 	port, err := get("SMOKE_TEST_PORT")
 	if err != nil {
-		Log.Debug(err.Error())
+		log.Debug(err.Error())
 		return 3000
 	}
 	value, err := strconv.Atoi(port)
 	if err != nil {
-		Log.Debug(err.Error())
+		log.Debug(err.Error())
 		return 3000
 	}
 	return value
@@ -42,12 +41,12 @@ func GetSmokeTestPort() int {
 func GetPrimeTimePort() int {
 	port, err := get("PRIME_TIME_PORT")
 	if err != nil {
-		Log.Debug(err.Error())
+		log.Debug(err.Error())
 		return 4000
 	}
 	value, err := strconv.Atoi(port)
 	if err != nil {
-		Log.Debug(err.Error())
+		log.Debug(err.Error())
 		return 4000
 	}
 	return value

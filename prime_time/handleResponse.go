@@ -1,10 +1,10 @@
-package PrimeTime
+package prime_time
 
 import (
 	"encoding/json"
 	"fmt"
 	"net"
-	"network-challenges/Log"
+	"network-challenges/log"
 )
 
 type IResponse interface {
@@ -62,19 +62,19 @@ func getResponse(data []byte, conn net.Conn) {
 	if err1 == nil {
 		result, err := res1.getResponse()
 		if err != nil {
-			Log.Error(err)
-			Log.Fatal(conn.Close())
+			log.Error(err)
+			log.Fatal(conn.Close())
 			return
 		}
 		_, err = conn.Write([]byte(result + "\n"))
-		Log.Fatal(err)
+		log.Fatal(err)
 		return
 	}
 	if err1.Error() == "invalid Response" {
-		Log.Error(fmt.Errorf("error 1: %s", err1.Error()))
+		log.Error(fmt.Errorf("error 1: %s", err1.Error()))
 		_, err := conn.Write([]byte("Invalid Request\n"))
-		Log.Fatal(err)
-		Log.Fatal(conn.Close())
+		log.Fatal(err)
+		log.Fatal(conn.Close())
 		return
 	}
 	res2 := Response2{}
@@ -83,17 +83,17 @@ func getResponse(data []byte, conn net.Conn) {
 		result, err := res2.getResponse()
 		if err != nil {
 			fmt.Println(err.Error())
-			Log.Fatal(conn.Close())
+			log.Fatal(conn.Close())
 			return
 		}
 		_, err = conn.Write([]byte(result + "\n"))
-		Log.Fatal(err)
+		log.Fatal(err)
 		return
 	}
-	Log.Error(fmt.Errorf("Error 1: %s \nError 2: %s", err1.Error(), err2.Error()))
+	log.Error(fmt.Errorf("Error 1: %s \nError 2: %s", err1.Error(), err2.Error()))
 	_, err := conn.Write([]byte("Invalid Request\n"))
-	Log.Fatal(err)
-	Log.Fatal(conn.Close())
+	log.Fatal(err)
+	log.Fatal(conn.Close())
 }
 
 func validateResponse(data []byte, res IResponse) error {

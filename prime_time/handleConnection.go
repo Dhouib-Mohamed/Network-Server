@@ -1,16 +1,16 @@
-package PrimeTime
+package prime_time
 
 import (
 	"fmt"
 	"net"
-	"network-challenges/Log"
+	"network-challenges/log"
 )
 
 func handleConnection(conn net.Conn) {
 	defer func(conn net.Conn) {
 		err := conn.Close()
 		if err != nil {
-			Log.Error(fmt.Errorf("error in Closing Connection :%s", err.Error()))
+			log.Error(fmt.Errorf("error in Closing Connection :%s", err.Error()))
 			return
 		}
 	}(conn)
@@ -19,7 +19,7 @@ func handleConnection(conn net.Conn) {
 	for {
 		n, err := conn.Read(buffer)
 		if err != nil {
-			Log.Error(fmt.Errorf("error reading :%s", err.Error()))
+			log.Error(fmt.Errorf("error reading :%s", err.Error()))
 			return
 		}
 
