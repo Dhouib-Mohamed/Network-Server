@@ -49,7 +49,7 @@ func GetPrimeTimePort() int {
 }
 
 func GetMeansEndPort() int {
-	port, err := get("MEANS_END_PORT")
+	port, err := get("MEANS_TO_END_PORT")
 	if err != nil {
 		return 5000
 	}

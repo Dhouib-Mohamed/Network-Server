@@ -54,5 +54,11 @@ func (r QueryRequest) execute(data *[]Price) (Response, error) {
 			count++
 		}
 	}
-	return Response{Action: "Q", Success: true, Result: total / count}, nil
+	var result int32
+	if count == 0 {
+		result = 0
+	} else {
+		result = total / count
+	}
+	return Response{Action: "Q", Success: true, Result: result}, nil
 }

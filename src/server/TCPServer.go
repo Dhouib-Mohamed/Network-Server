@@ -12,7 +12,7 @@ func TCPServer(port int, handleConnection func(net.Conn)) {
 		log.Error(fmt.Errorf("error in Creating server :%s", err.Error()))
 		return
 	}
-	log.Info(fmt.Sprintf("server is Listening on Port %d\n", port))
+	log.Info(fmt.Sprintf("server is Listening on Port %d", port))
 	defer func(ln net.Listener) {
 		if err := ln.Close(); err != nil {
 			log.Error(fmt.Errorf("error in Closing server :%s", err.Error()))
