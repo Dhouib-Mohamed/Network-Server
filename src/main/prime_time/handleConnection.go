@@ -3,7 +3,7 @@ package prime_time
 import (
 	"fmt"
 	"net"
-	"network-challenges/log"
+	"network-challenges/src/utils/log"
 )
 
 func handleConnection(conn net.Conn) {

@@ -2,7 +2,7 @@ package smoke_test
 
 import (
 	"net"
-	"network-challenges/log"
+	"network-challenges/src/utils/log"
 )
 import "fmt"
 

@@ -3,19 +3,19 @@ package log
 import "fmt"
 
 func Error(err error) {
-	fmt.Println(err.Error())
+	fmt.Println("Error :", err.Error())
 }
 
 func Info(info string) {
-	fmt.Println(info)
+	fmt.Println("Info : ", info)
 }
 
 func Debug(debug string) {
-	fmt.Println(debug)
+	fmt.Println("Debug :", debug)
 }
 
 func Warning(warning string) {
-	fmt.Println(warning)
+	fmt.Println("Warning :", warning)
 }
 
 func Fatal(fatal error) {

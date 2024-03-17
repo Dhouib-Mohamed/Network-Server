@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
-	"network-challenges/log"
+	"network-challenges/src/utils/log"
 )
 
 type IResponse interface {

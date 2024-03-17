@@ -1,8 +1,8 @@
 package prime_time
 
 import (
-	"network-challenges/env"
-	"network-challenges/server"
+	"network-challenges/src/server"
+	"network-challenges/src/utils/env"
 )
 
 func Index() {

@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	"net"
-	"network-challenges/log"
+	"network-challenges/src/utils/log"
 )
 
 func TCPServer(port int, handleConnection func(net.Conn)) {
