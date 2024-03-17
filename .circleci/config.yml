@@ -54,15 +54,24 @@ jobs:
       - store_artifacts:
           path: ~/artifacts
           destination: executables
-  deploy:
-    # This is an example deploy job, not actually used by the workflow
+  release-docker-image:
+    # Build a Docker image and push it to a registry
     docker:
-      - image: cimg/base:stable
+      - image: cimg/go:1.20
     steps:
-      # Replace this with steps to deploy to users
+      - checkout
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+          name: Build the Docker image
+          command: |
+            docker build -t network-challenges .
+            docker tag network-challenges dhouib/network-challenges
+            echo $DOCKER_PASSWORD | docker login dhouib -u $DOCKER_USERNAME --password-stdin
+            docker push dhouib/network-challenges
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - network-challenges
+
 workflows:
   build-and-test:
     jobs:
@@ -70,6 +79,8 @@ workflows:
       - build-go-executables:
           requires:
             - test-go
-    # - deploy:
-    #     requires:
-    #       - build-go-executables
+  release:
+    jobs:
+      - release-docker-image:
+          requires:
+            - build-go-executables
