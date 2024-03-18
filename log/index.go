@@ -14,9 +14,9 @@ func Debug(debug string) {
 	fmt.Println(debug)
 }
 
-//func Warning(warning string) {
-//	fmt.Println(warning)
-//}
+func Warning(warning string) {
+	fmt.Println(warning)
+}
 
 func Fatal(fatal error) {
 	if fatal != nil {
@@ -24,6 +24,6 @@ func Fatal(fatal error) {
 	}
 }
 
-//func Trace(trace string) {
-//	fmt.Println(trace)
-//}
+func Trace(trace string) {
+	fmt.Println(trace)
+}
