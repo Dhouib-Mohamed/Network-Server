@@ -3,6 +3,7 @@
 version: 2.1
 jobs:
   test-go:
+
     # Install go modules and run tests
     docker:
       - image: cimg/go:1.20
