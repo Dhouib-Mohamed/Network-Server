@@ -82,6 +82,7 @@ workflows:
             - test-go
   release:
     jobs:
+      - build-go-executables
       - release-docker-image:
           requires:
             - build-go-executables
