@@ -65,8 +65,9 @@ jobs:
       - run: |
             docker build -t network-challenges .
             docker tag network-challenges dhouib/network-challenges
-            echo $DOCKER_PASSWORD | docker login dhouib -u $DOCKER_USERNAME --password-stdin
-            docker push dhouib/network-challenges
+            echo "done"
+#            echo $DOCKER_PASSWORD | docker login dhouib -u $DOCKER_USERNAME --password-stdin
+#            docker push dhouib/network-challenges
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
