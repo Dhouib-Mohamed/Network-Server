@@ -62,24 +62,29 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
-      - run: |
+      - run:
+          name: Build the Docker image
+          command: |
             docker build -t network-challenges .
             docker tag network-challenges dhouib/network-challenges
-            echo $DOCKER_PASSWORD 
-            echo $DOCKER_USERNAME
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push dhouib/network-challenges
 
 workflows:
   build-and-test:
+    when:
+      [ branch, tag ]:
+        only:
+          - main
     jobs:
       - test-go
       - build-go-executables:
           requires:
             - test-go
   release:
+    when:
+      [ tag ]:
+        only:
+          - main
     jobs:
-      - build-go-executables
-      - release-docker-image:
-          requires:
-            - build-go-executables
+      - release-docker-image
