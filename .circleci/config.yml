@@ -67,15 +67,16 @@ jobs:
           command: |
             docker build -t network-challenges .
             docker tag network-challenges dhouib/network-challenges
+            docker tag network-challenges dhouib/network-challenges:<< pipeline.git.tag >>
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push dhouib/network-challenges
+            docker push dhouib/network-challenges:<< pipeline.git.tag >>
+            
 
 workflows:
   build-and-test:
     when:
-      [ branch ]:
-        only:
-          - main
+      equal: [ << pipeline.git.branch >>, main ]
     jobs:
       - test-go
       - build-go-executables:
@@ -83,7 +84,7 @@ workflows:
             - test-go
   release:
     when:
-      [ tag ]:
-        type: created
+      not:
+        equal: [ << pipeline.git.tag >>, "" ]
     jobs:
       - release-docker-image
