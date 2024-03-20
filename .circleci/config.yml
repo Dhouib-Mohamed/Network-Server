@@ -73,7 +73,7 @@ jobs:
 workflows:
   build-and-test:
     when:
-      [ branch, tag ]:
+      [ branch ]:
         only:
           - main
     jobs:
@@ -84,7 +84,6 @@ workflows:
   release:
     when:
       [ tag ]:
-        only:
-          - main
+        type: created
     jobs:
       - release-docker-image
