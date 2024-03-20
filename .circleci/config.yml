@@ -75,8 +75,6 @@ jobs:
 
 workflows:
   build-and-test:
-    when:
-      equal: [ << pipeline.git.branch >>, main ]
     jobs:
       - test-go
       - build-go-executables:
