@@ -45,6 +45,7 @@ jobs:
       - store_artifacts:
           path: ~/artifacts
           destination: executables
+
   security-check:
     # Run Snyk to check for vulnerabilities
     docker:
