@@ -58,7 +58,7 @@ jobs:
           project: ${CIRCLE_PROJECT_REPONAME}-app
           severity-threshold: high
           token-variable: SNYK_TOKEN
-      - sync/scan:
+      - snyk/scan:
           docker-image-name: $IMAGE_NAME:latest
           fail-on-issues: false
           monitor-on-build: true
