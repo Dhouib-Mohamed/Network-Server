@@ -59,7 +59,7 @@ jobs:
           severity-threshold: high
           token-variable: SNYK_TOKEN
       - snyk/scan:
-          docker-image-name: $IMAGE_NAME:latest
+          docker-image-name: dhouib/network-challenges:latest
           fail-on-issues: false
           monitor-on-build: true
           project: ${CIRCLE_PROJECT_REPONAME}-container
@@ -79,10 +79,10 @@ jobs:
           command: |
             docker build -t network-challenges .
             docker tag network-challenges dhouib/network-challenges
-            docker tag network-challenges dhouib/network-challenges:<< pipeline.git.tag >>
+#            docker tag network-challenges dhouib/network-challenges:<< pipeline.git.tag >>
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push dhouib/network-challenges
-            docker push dhouib/network-challenges:<< pipeline.git.tag >>
+#            docker push dhouib/network-challenges:<< pipeline.git.tag >>
             
 
 workflows:
