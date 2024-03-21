@@ -52,7 +52,20 @@ jobs:
       - image: cimg/go:1.22
     steps:
       - checkout
-      - snyk/scan
+      - snyk/scan:
+          fail-on-issues: false
+          monitor-on-build: true
+          project: ${CIRCLE_PROJECT_REPONAME}-app
+          severity-threshold: high
+          token-variable: SNYK_TOKEN
+      - sync/scan:
+          docker-image-name: $IMAGE_NAME:latest
+          fail-on-issues: false
+          monitor-on-build: true
+          project: ${CIRCLE_PROJECT_REPONAME}-container
+          severity-threshold: high
+          target-file: Dockerfile
+          token-variable: SNYK_TOKEN
   release-docker-image:
     # Build a Docker image and push it to a registry
     docker:
