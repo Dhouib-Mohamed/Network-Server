@@ -79,10 +79,8 @@ jobs:
           command: |
             docker build -t network-challenges .
             docker tag network-challenges dhouib/network-challenges
-#            docker tag network-challenges dhouib/network-challenges:<< pipeline.git.tag >>
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push dhouib/network-challenges
-#            docker push dhouib/network-challenges:<< pipeline.git.tag >>
             
 
 workflows:
