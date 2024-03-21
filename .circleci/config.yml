@@ -2,7 +2,7 @@
 # Stacks detected: artifact:go-executable:,deps:go:.
 version: 2.1
 orbs:
-  snyk: snyk/snyk@0.0.8
+  snyk: snyk/snyk@2.1.0
 jobs:
   test-go:
     # Install go modules and run tests
