@@ -79,7 +79,6 @@ jobs:
           command: |
             docker build -t network-challenges .
             docker tag network-challenges dhouib/network-challenges
-            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push dhouib/network-challenges
             
 
