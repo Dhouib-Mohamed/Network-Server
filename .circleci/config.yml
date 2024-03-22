@@ -77,7 +77,7 @@ jobs:
       - run:
           name: Test tag
           command: |
-            echo <<pipeline.git.tag>>
+            echo <<pipeline.git.tag>>=""
       - run:
           name: Build the Docker image
           command: |
