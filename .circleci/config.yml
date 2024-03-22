@@ -75,6 +75,10 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
+          name: Test tag
+          command: |
+            echo <<pipeline.git.tag>>
+      - run:
           name: Build the Docker image
           command: |
             docker build -t network-challenges .
