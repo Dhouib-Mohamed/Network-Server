@@ -66,10 +66,16 @@ jobs:
           severity-threshold: high
           target-file: Dockerfile
           token-variable: SNYK_TOKEN
+
   release-docker-image:
     # Build a Docker image and push it to a registry
     docker:
       - image: cimg/go:1.22
+    filters:
+      tags:
+        only: /.*/
+      branches:
+        ignore: /.*/
     steps:
       - checkout
       - setup_remote_docker:
@@ -98,5 +104,6 @@ workflows:
     when:
       not:
         equal: [ << pipeline.git.tag >>, "" ]
+
     jobs:
       - release-docker-image
